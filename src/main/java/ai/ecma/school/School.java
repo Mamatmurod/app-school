@@ -26,7 +26,7 @@ import java.util.TimeZone;
 public class School {
 
     public static void main(String[] args) {
-        // Warning. This code run application with timezone UTC.
+        // Warning. This code runs the application with timezone UTC.
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         SpringApplication.run(School.class, args);
     }
