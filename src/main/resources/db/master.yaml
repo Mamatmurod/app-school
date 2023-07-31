@@ -1,0 +1,28 @@
+#https://docs.liquibase.com/change-types/home.html
+databaseChangeLog:
+  - changeSet:
+      id: 6/23/2023
+      author: school
+      validCheckSum: any
+      runAlways: false
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: changelog/startup.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+            endDelimiter: \nGO
+  - changeSet:
+      id: createUniqueIndexes
+      author: school
+      validCheckSum: any
+      runAlways: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: changelog/indexes.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+            endDelimiter: \nGO

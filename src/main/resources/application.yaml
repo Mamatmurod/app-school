@@ -1,0 +1,11 @@
+server:
+  port: 9342
+
+spring:
+  application:
+    name: SCHOOL-SERVICE
+  profiles:
+    active: test
+
+service:
+  username: usernameSchoolService

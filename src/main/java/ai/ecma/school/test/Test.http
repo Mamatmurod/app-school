@@ -1,0 +1,30 @@
+POST http://localhost:7997/api/university/v2/dashboard/admin/attendance
+Content-Type: application/json
+
+{
+  "currentHorizontal": "MENTOR",
+  "currentVertical": "GROUP",
+  "horizontalItems": [
+    "ACADEMIC_YEAR",
+    "SEMESTER",
+    "MONTH",
+    "DAY"
+  ],
+  "verticalItems": [
+    "GROUP",
+    "MODULE",
+    "MENTOR",
+    "STUDENT"
+  ],
+  "horizontalFilter": {
+  },
+  "verticalFilter": {
+  }
+}
+
+####
+GET https://api.pdp.uz/api/auth/v1/user/user-by-token-for-application-university
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2NjEwYjhkMi0xNmQ0LTQwYzQtODE5ZGJlY2MtOGQyMS00ZDkyLTgzMjAtZTZiNGU3MDg5NzdkLWI3ZWUtYmJmZjMwNmU0ZDVmIiwiaWF0IjoxNjg5NjYyMDA5LCJleHAiOjE2OTAyNjY4MDl9.g2myikxDEfvurgtwe_htW42EsddFZmiFj5O1FwQLxOs
+ServiceUsername : usernameEducationService
+ServicePassword : educationServicePassword8434323212

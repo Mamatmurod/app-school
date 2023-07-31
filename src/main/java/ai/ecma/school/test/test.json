@@ -1,0 +1,32 @@
+{
+  "startDate": "2023-05-01",
+  "endDate": "2023-05-01",
+  "timeItems": {
+    "MONDAY": [
+      {
+        "startTime": "09:00",
+        "endTime": "12:00"
+      },
+      {
+        "startTime": "13:00",
+        "endTime": "16:00"
+      }
+    ],
+    "WEDNESDAY": [
+      {
+        "startTime": "09:00",
+        "endTime": "12:00"
+      }
+    ],
+    "FRIDAY": [
+      {
+        "startTime": "09:00",
+        "endTime": "12:00"
+      },
+      {
+        "startTime": "16:00",
+        "endTime": "20:00"
+      }
+    ]
+  }
+}

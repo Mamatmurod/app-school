@@ -1,0 +1,1 @@
+-- Bu yerda query yozib qo'yilsa project run bo'lgan payt ishlaydi

@@ -1,0 +1,121 @@
+server:
+  #  host: localhost
+  host: 185.74.5.104
+  eureka-register: false
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/school
+    username: school
+    password: K0YmRs6yD4s9AmaHt2FelP
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 10
+      idleTimeout: 130000
+      connectionTimeout: 310000
+      leakDetectionThreshold: 310000
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jackson:
+    serialization:
+      FAIL-ON-EMPTY-BEANS: false
+  liquibase:
+    change-log: classpath:db/master.yaml
+    enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        connection:
+          charset: UTF-8
+          hbm2ddl:
+            import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+  sql:
+    init:
+      mode: always
+  cache:
+    type: redis
+  data:
+    redis:
+      client-name: ${spring.application.name}
+      host: localhost
+      port: 6379
+      timeout: 1000
+      lettuce:
+        pool:
+          max-wait: 1000
+  rabbitmq:
+    host: ${server.host}
+    port: 5672
+    username: springboot
+    password: C2EUk5pgJWdKJv5
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 5s
+          max-attempts: 5
+          max-interval: 10s
+          multiplier: 2
+    school:
+      default-exchange: school.defaultDirectExchange
+      dead-letter-exchange: school.deadLetterExchange
+      queues:
+        dead-letter:
+          name: lmsuniversity.deadLetter
+          routing-key: lmsuniversity.deadLetter
+        add-students:
+          name: lmsuniversity.add-students
+          durable: true
+          routing-key: add-students
+    exception-handler:
+      default-exchange: exceptionHandler.defaultDirectExchange
+      queues:
+        bot-queues:
+          name: exceptionHandler.bot-queue
+          durable: true
+          routing-key: bot-queue-key
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger
+    tags-sorter: alpha
+    operations-sorter: alpha
+    disable-swagger-default-url: true
+    doc-expansion: none
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 3000
+        read-timeout: 3000
+eureka:
+  client:
+    register-with-eureka: ${server.eureka-register}
+    fetch-registry: true
+    service-url:
+      defaultZone: http://pdperpusername:123456pdperpusername@${server.host}:8700/eureka
+  instance:
+    hostname: 185.74.5.104
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always9
