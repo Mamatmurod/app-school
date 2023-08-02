@@ -135,5 +135,4 @@ public interface ColumnKey {
     String PAYMENT_TYPE_ENUM = "payment_type_enum";
     String PAYMENT_STATUS_ENUM = "payment_status_enum";
     String PAYMENT_STATUS_DATE = "payment_status_date";
-    String LEVEL = "level";
 }
