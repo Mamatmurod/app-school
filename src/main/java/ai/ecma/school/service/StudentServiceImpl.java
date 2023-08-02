@@ -2,17 +2,11 @@ package ai.ecma.school.service;
 
 import ai.ecma.school.entity.Student;
 import ai.ecma.school.exception.RestException;
-import ai.ecma.school.net.ApiResult;
-import ai.ecma.school.payload.AddStudentDTO;
-import ai.ecma.school.repository.StudentRepository;
-import io.swagger.v3.oas.annotations.servers.Server;
 import ai.ecma.school.mapper.StudentMapper;
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AddStudentDTO;
 import ai.ecma.school.payload.StudentDTO;
-import ai.ecma.school.payload.UserDTO;
 import ai.ecma.school.repository.StudentRepository;
-import ai.ecma.school.utils.CommonUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +18,6 @@ import java.util.UUID;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-
     private final StudentMapper studentMapper;
 
     @Override
@@ -38,23 +31,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public ApiResult<?> getStudents() {
         List<Student> studentList = studentRepository.findAll();
+
         return ApiResult.successResponse(studentList);
     }
 
     @Override
     public ApiResult<?> createStudent(AddStudentDTO addStudentDTO) {
 
-        return null;
-
-    }
-
-    @Override
-    public ApiResult<?> updateStudent() {
-        return null;
-    }
-
-    @Override
-    public ApiResult<?> deleteStudent() {
         Student student = studentMapper.fromAddStudentDTO(addStudentDTO);
 
         studentRepository.save(student);
@@ -86,9 +69,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public ApiResult<?> deleteStudentById(UUID studentId) {
-
         studentRepository.deleteById(studentId);
         return ApiResult.successResponse(true);
-
     }
 }
