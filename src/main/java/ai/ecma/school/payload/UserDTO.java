@@ -46,6 +46,9 @@ public class UserDTO implements Serializable {
 
     private String signature;
 
+    // HOZIR QAYSI COMPANY DA ISH OLIB BORAYOTGANI
+    private Long activeCompany;
+
     public UserDTO(UUID id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;

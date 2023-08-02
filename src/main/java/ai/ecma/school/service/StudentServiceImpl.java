@@ -6,7 +6,9 @@ import ai.ecma.school.mapper.StudentMapper;
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AddStudentDTO;
 import ai.ecma.school.payload.StudentDTO;
+import ai.ecma.school.payload.UserDTO;
 import ai.ecma.school.repository.StudentRepository;
+import ai.ecma.school.utils.CommonUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,7 @@ public class StudentServiceImpl implements StudentService {
     public ApiResult<?> getStudents() {
         List<Student> studentList = studentRepository.findAll();
 
+        UserDTO currentUser = CommonUtils.getCurrentUser();
         return ApiResult.successResponse(studentList);
     }
 
