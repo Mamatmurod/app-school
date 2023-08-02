@@ -77,7 +77,7 @@ public class ExceptionHelper {
     public ResponseEntity<ApiResult<ErrorData>> handleException(TypeMismatchException ex) {
         sendMessageToTelegramChannel(ex);
         return new ResponseEntity<>(
-                ApiResult.errorResponse(ex.getMessage(), 400),
+                ApiResult.errorResponse(HttpStatus.BAD_REQUEST.name(), 400),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -86,7 +86,7 @@ public class ExceptionHelper {
     public ResponseEntity<ApiResult<ErrorData>> handleException(HttpMessageNotReadableException ex) {
         sendMessageToTelegramChannel(ex);
         return new ResponseEntity<>(
-                ApiResult.errorResponse(ex.getMessage(), HttpStatus.CONFLICT.value()),
+                ApiResult.errorResponse(HttpStatus.BAD_REQUEST.name(), HttpStatus.CONFLICT.value()),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -94,7 +94,7 @@ public class ExceptionHelper {
     public ResponseEntity<ApiResult<ErrorData>> handleException(MissingServletRequestParameterException ex) {
         sendMessageToTelegramChannel(ex);
         return new ResponseEntity<>(
-                ApiResult.errorResponse(ex.getMessage(), 400),
+                ApiResult.errorResponse(HttpStatus.BAD_REQUEST.name(), 400),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -102,7 +102,7 @@ public class ExceptionHelper {
     public ResponseEntity<ApiResult<ErrorData>> handleException(ServletRequestBindingException ex) {
         sendMessageToTelegramChannel(ex);
         return new ResponseEntity<>(
-                ApiResult.errorResponse(ex.getMessage(), 400),
+                ApiResult.errorResponse(HttpStatus.BAD_REQUEST.name(), 400),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -111,7 +111,7 @@ public class ExceptionHelper {
     public ResponseEntity<ApiResult<ErrorData>> handleException(MissingServletRequestPartException ex) {
         sendMessageToTelegramChannel(ex);
         return new ResponseEntity<>(
-                ApiResult.errorResponse(ex.getMessage(), 400),
+                ApiResult.errorResponse(HttpStatus.BAD_REQUEST.name(), 400),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -119,7 +119,7 @@ public class ExceptionHelper {
     public ResponseEntity<ApiResult<ErrorData>> handleException(BindException ex) {
         sendMessageToTelegramChannel(ex);
         return new ResponseEntity<>(
-                ApiResult.errorResponse(ex.getMessage(), 400),
+                ApiResult.errorResponse(HttpStatus.BAD_REQUEST.name(), 400),
                 HttpStatus.BAD_REQUEST);
     }
 
@@ -145,7 +145,7 @@ public class ExceptionHelper {
     public ResponseEntity<ApiResult<ErrorData>> handleException(NoHandlerFoundException ex) {
         sendMessageToTelegramChannel(ex);
         return new ResponseEntity<>(
-                ApiResult.errorResponse(ex.getMessage(), 404),
+                ApiResult.errorResponse(HttpStatus.NOT_FOUND.name(), 404),
                 HttpStatus.NOT_FOUND);
     }
 
