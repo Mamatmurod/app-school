@@ -3,6 +3,7 @@ package ai.ecma.school.entity;
 import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
 import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.enums.GroupStatusEnum;
+import ai.ecma.school.enums.GroupTypeEnum;
 import ai.ecma.school.enums.WeekdayEnum;
 import ai.ecma.school.utils.ColumnKey;
 import ai.ecma.school.utils.TableNameConstant;
@@ -56,10 +57,12 @@ public class Group extends AbsUUIDUserAuditEntity {
     /**
      * GURUHNING TURI
      */
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = ColumnKey.GROUP_TYPE_ID)
-    private GroupTypeEnum groupType;
+    @Enumerated(EnumType.STRING)
+    @Column(name = ColumnKey.TYPE)
+    private GroupTypeEnum groupTypeEnum;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = ColumnKey.LEVEL)
     private GroupLevelEnum groupLevelEnum;
 
     /**
