@@ -26,12 +26,10 @@ public class AdmissionServiceImpl implements AdmissionService{
             return ApiResult.errorResponse("Group Already Exist",409);
         }
         Admission admission = new Admission();
-        admission.setBranchId();
+        admission.setBranchId(CommonUtils.getCurrentUser().getActiveCompany());
         admissionRepository.save(admission);
         return ApiResult.successResponse("Admission Added Successfully");
 
-
-        return null;
     }
 
     @Override

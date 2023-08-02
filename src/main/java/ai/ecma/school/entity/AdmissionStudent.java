@@ -1,7 +1,6 @@
 package ai.ecma.school.entity;
 
 import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
-import ai.ecma.school.enums.ImportTypeEnum;
 import ai.ecma.school.utils.ColumnKey;
 import ai.ecma.school.utils.TableNameConstant;
 import jakarta.persistence.*;

@@ -71,8 +71,6 @@ public class Student extends AbsUUIDUserAuditEntity implements Cloneable {
     @JdbcTypeCode(SqlTypes.LONGVARCHAR)
     private Long[] interestedCourse;
 
-    @Enumerated(EnumType.STRING)
-    private EnglishLevelEnum englishLevel;
 
     @Column(name = "position_id")
     private Long positionId;
