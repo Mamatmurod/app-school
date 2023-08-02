@@ -2,6 +2,7 @@ package ai.ecma.school.entity;
 
 import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
 import ai.ecma.school.enums.GroupLevelEnum;
+import ai.ecma.school.enums.GroupTypeEnum;
 import ai.ecma.school.enums.WeekdayEnum;
 import ai.ecma.school.utils.ColumnKey;
 import ai.ecma.school.utils.TableNameConstant;
@@ -41,11 +42,12 @@ public class Admission extends AbsUUIDUserAuditEntity {
     /**
      * GURUHNING TURI
      */
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = ColumnKey.GROUP_TYPE_ID)
-    private GroupType groupType;
     @Enumerated(EnumType.STRING)
-    @Column(name=ColumnKey.LEVEL)
+    @Column(name = ColumnKey.GROUP_TYPE)
+    private GroupTypeEnum groupTypeEnum;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = ColumnKey.LEVEL)
     private GroupLevelEnum groupLevelEnum;
 
     /**
@@ -106,29 +108,8 @@ public class Admission extends AbsUUIDUserAuditEntity {
     private Date startDate;
 
     /**
-     * QABULNING TUGASH VAQTIw
+     * QABULNING TUGASH VAQTI
      */
     @Column(name = ColumnKey.END_DATE, nullable = false)
     private Date endDate;
-
-    /*========================NOILOJ FIELDLAR========================*/
-
-    /**
-     * GURUH O'TADIGAN DARSLARNING SONI
-     */
-    @Column(name = ColumnKey.LESSON_COUNT)
-    private Integer lessonCount;
-
-    /**
-     * GURUHNING DARSLARI NECHI OY DAVOM ETISHI
-     */
-    @Column(name = ColumnKey.LESSON_DURATION_IN_MONTH)
-    private Integer lessonDurationInMonth;
-
-    @Column(name = ColumnKey.HAS_SCORE)
-    private Boolean hasScore;
-
-    public Boolean getHasScore() {
-        return hasScore != null && hasScore;
-    }
 }
