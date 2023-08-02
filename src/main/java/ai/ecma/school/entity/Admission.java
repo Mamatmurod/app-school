@@ -111,24 +111,5 @@ public class Admission extends AbsUUIDUserAuditEntity {
     @Column(name = ColumnKey.END_DATE, nullable = false)
     private Date endDate;
 
-    /*========================NOILOJ FIELDLAR========================*/
 
-    /**
-     * GURUH O'TADIGAN DARSLARNING SONI
-     */
-    @Column(name = ColumnKey.LESSON_COUNT)
-    private Integer lessonCount;
-
-    /**
-     * GURUHNING DARSLARI NECHI OY DAVOM ETISHI
-     */
-    @Column(name = ColumnKey.LESSON_DURATION_IN_MONTH)
-    private Integer lessonDurationInMonth;
-
-    @Column(name = ColumnKey.HAS_SCORE)
-    private Boolean hasScore;
-
-    public Boolean getHasScore() {
-        return hasScore != null && hasScore;
-    }
 }
