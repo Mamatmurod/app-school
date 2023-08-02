@@ -28,13 +28,4 @@ public class StudentControllerImpl implements StudentController{
         return null;
     }
 
-    @Override
-    public ApiResult<?> editStudent() {
-        return null;
-    }
-
-    @Override
-    public ApiResult<?> deleteStudent(UUID id) {
-        return null;
-    }
 }
