@@ -53,13 +53,12 @@ public class Group extends AbsUUIDUserAuditEntity {
     @Column(name = ColumnKey.BRANCH_ID, nullable = false)
     private Long branchId;
 
-    /**
-     * GURUHNING TURI
-     */
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = ColumnKey.GROUP_TYPE_ID)
-    private GroupTypeEnum groupType;
 
+    /**
+     * GURUHNING QAYSI QUBUL QO'SHISH
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = ColumnKey.GROUP_LEVEL, nullable = false)
     private GroupLevelEnum groupLevelEnum;
 
     /**
