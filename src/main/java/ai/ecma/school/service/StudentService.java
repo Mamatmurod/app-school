@@ -2,6 +2,7 @@ package ai.ecma.school.service;
 
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AddStudentDTO;
+import ai.ecma.school.payload.StudentDTO;
 
 import java.util.UUID;
 
@@ -13,9 +14,9 @@ public interface StudentService {
 
     ApiResult<?> createStudent(AddStudentDTO addStudentDTO);
 
-    ApiResult<?> updateStudent();
+    ApiResult<?> updateStudent(StudentDTO studentDTO);
 
-    ApiResult<?> deleteStudent();
+    ApiResult<?> deleteStudents();
 
     ApiResult<?> deleteStudentById(UUID studentId);
 
