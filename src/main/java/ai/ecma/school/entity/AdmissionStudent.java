@@ -54,9 +54,6 @@ public class AdmissionStudent extends AbsUUIDUserAuditEntity {
 
     private Double discountPrice;
 
-    @Enumerated(EnumType.STRING)
-    private ImportTypeEnum importType;
-
     private Long amoCrmId;
 
     private Double score;
