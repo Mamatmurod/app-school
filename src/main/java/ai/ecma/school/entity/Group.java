@@ -3,6 +3,7 @@ package ai.ecma.school.entity;
 import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
 import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.enums.GroupStatusEnum;
+import ai.ecma.school.enums.GroupTypeEnum;
 import ai.ecma.school.enums.WeekdayEnum;
 import ai.ecma.school.utils.ColumnKey;
 import ai.ecma.school.utils.TableNameConstant;
@@ -57,9 +58,8 @@ public class Group extends AbsUUIDUserAuditEntity {
     /**
      * GURUHNING QAYSI QUBUL QO'SHISH
      */
-    @Enumerated(EnumType.STRING)
-    @Column(name = ColumnKey.GROUP_LEVEL, nullable = false)
-    private GroupLevelEnum groupLevelEnum;
+  
+  
 
     /**
      * GURUHNING HOLATI. (CREATED, STARTED, COMPLETE)
