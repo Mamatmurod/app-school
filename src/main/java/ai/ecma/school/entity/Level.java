@@ -26,6 +26,9 @@ public class Level extends AbsUUIDUserAuditEntity {
     private GroupLevelEnum levelEnum;
 
     @Column(name = ColumnKey.PRICE)
-    private double price;
+    private double mainPrice;
+
+    @Column(name = ColumnKey.DISCOUNT_PRICE)
+    private double discountPrice;
 
 }

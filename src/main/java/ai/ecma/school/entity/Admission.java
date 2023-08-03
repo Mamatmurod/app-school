@@ -33,7 +33,7 @@ public class Admission extends AbsUUIDUserAuditEntity {
     private Level level;
 
     @Column(name = ColumnKey.TOTAL_PRICE)
-    private double totalPrice = 0.0;
+    private double mainPrice = 0.0;
 
     @Column(name = ColumnKey.DISCOUNT_PRICE)
     private double discountPrice = 0.0;

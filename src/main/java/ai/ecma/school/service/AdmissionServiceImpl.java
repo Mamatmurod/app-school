@@ -38,8 +38,8 @@ public class AdmissionServiceImpl implements AdmissionService {
     }
 
     private double getTotalPriceToDiscountPrice(Admission admission) {
-        if (admission.getDiscountPricePercentage()==0) return admission.getTotalPrice();
-        return admission.getTotalPrice()-(admission.getTotalPrice() / 100) * admission.getDiscountPricePercentage();
+        if (admission.getDiscountPricePercentage()==0) return admission.getMainPrice();
+        return admission.getMainPrice()-(admission.getMainPrice() / 100) * admission.getDiscountPricePercentage();
     }
 
     private GroupLevelEnum getGroupLevel(String groupLevel) {
@@ -57,7 +57,6 @@ public class AdmissionServiceImpl implements AdmissionService {
 
     @Override
     public ApiResult<?> editAdmission(AdmissionDTO admissionDTO) {
-
         Admission admission = admissionRepository.findById(admissionDTO.getId())
                 .orElseThrow(() -> RestException.notFound("Admission not founded!"));
         if (admissionDTO.getEndDate() != null) admission.setEndDate(new Date(admissionDTO.getEndDate()));
@@ -67,12 +66,13 @@ public class AdmissionServiceImpl implements AdmissionService {
     }
 
     private void admissionSave(AdmissionDTO admissionDTO, Admission admission) {
-        if (admissionDTO.getTotalPrice() != null) admission.setTotalPrice(admissionDTO.getTotalPrice());
+        if (admissionDTO.getTotalPrice() != null) admission.setMainPrice(admissionDTO.getTotalPrice());
         if (admissionDTO.getDiscountPricePercentage() != null) admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
-        if (admission.getTotalPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
+        if (admission.getMainPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
         Level level = new Level();
         level.setLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
-        level.setPrice(admission.getDiscountPrice());
+        level.setMainPrice(admission.getMainPrice());
+        level.setDiscountPrice(admission.getDiscountPrice());
         admission.setLevel(level);
         admission.setIsDeleted(false);
         admissionRepository.save(admission);
