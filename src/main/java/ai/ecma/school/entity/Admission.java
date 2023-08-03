@@ -29,11 +29,18 @@ public class Admission extends AbsUUIDUserAuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long position;
 
-
     @Enumerated(EnumType.STRING)
     @Column(name = ColumnKey.GROUP_LEVEL)
     private GroupLevelEnum groupLevelEnum;
 
+    @Column(name = ColumnKey.TOTAL_PRICE)
+    private double totalPrice = 0.0;
+
+    @Column(name = ColumnKey.DISCOUNT_PRICE)
+    private double discountPrice = 0.0;
+
+    @Column(name = ColumnKey.DISCOUNT_PRICE_PERCENTAGE)
+    private byte discountPricePercentage = 0;
 
     /**
      * QAYSI FILLIALGA TEGISHLI EKANLIGI

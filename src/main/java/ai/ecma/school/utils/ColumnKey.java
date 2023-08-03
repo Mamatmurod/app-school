@@ -138,4 +138,5 @@ public interface ColumnKey {
     String LEVEL = "level";
     String GROUP_LEVEL = "group_level";
     String IS_DELETED = "is_delete";
+    String TOTAL_PRICE = "total_price";
 }
