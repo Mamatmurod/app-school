@@ -9,5 +9,5 @@ public interface GroupService {
     ApiResult<?> getGroupById(long id);
     ApiResult<?> getGroupList();
     ApiResult<?> editGroupById(long id, GroupUpdateRequest groupUpdateRequest);
-    ApiResult<?> editGroup(long id);
+    ApiResult<?> deleteGroup(long id);
 }

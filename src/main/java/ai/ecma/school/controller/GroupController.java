@@ -20,8 +20,8 @@ public interface GroupController {
     ApiResult<?> getGroupById(@PathVariable long id);
     @GetMapping(GET_GROUP_LIST)
     ApiResult<?> getGroupList();
-    @DeleteMapping(EDIT_GROUP)
-    ApiResult<?> editGroupById(@PathVariable long id, @RequestBody GroupUpdateRequest groupUpdateRequest);
     @PutMapping(EDIT_GROUP)
-    ApiResult<?> editGroup(@PathVariable long id);
+    ApiResult<?> editGroupById(@PathVariable long id, @RequestBody GroupUpdateRequest groupUpdateRequest);
+    @DeleteMapping(DELETE_GROUP)
+    ApiResult<?> deleteGroupById(@PathVariable long id);
 }
