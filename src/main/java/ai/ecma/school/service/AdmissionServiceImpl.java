@@ -1,6 +1,7 @@
 package ai.ecma.school.service;
 
 import ai.ecma.school.entity.Admission;
+import ai.ecma.school.entity.Level;
 import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.exception.RestException;
 import ai.ecma.school.net.ApiResult;
@@ -32,7 +33,6 @@ public class AdmissionServiceImpl implements AdmissionService {
         admission.setBranchId(CommonUtils.getCurrentUser().getActiveCompany());
         admission.setEndDate(new Date(admissionDTO.getEndDate()));
         admission.setStartDate(new Date(admissionDTO.getStarDate()));
-        admission.setGroupLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
         admissionSave(admissionDTO, admission);
         return ApiResult.successResponse("Admission Added Successfully");
     }
@@ -62,7 +62,6 @@ public class AdmissionServiceImpl implements AdmissionService {
                 .orElseThrow(() -> RestException.notFound("Admission not founded!"));
         if (admissionDTO.getEndDate() != null) admission.setEndDate(new Date(admissionDTO.getEndDate()));
         if (admissionDTO.getStarDate() != null) admission.setStartDate(new Date(admissionDTO.getStarDate()));
-        if (admissionDTO.getGroupLevel() != null) admission.setGroupLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
         admissionSave(admissionDTO, admission);
         return ApiResult.successResponse("Admission edited!");
     }
@@ -71,7 +70,10 @@ public class AdmissionServiceImpl implements AdmissionService {
         if (admissionDTO.getTotalPrice() != null) admission.setTotalPrice(admissionDTO.getTotalPrice());
         if (admissionDTO.getDiscountPricePercentage() != null) admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
         if (admission.getTotalPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
-
+        Level level = new Level();
+        level.setLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
+        level.setPrice(admission.getDiscountPrice());
+        admission.setLevel(level);
         admission.setIsDeleted(false);
         admissionRepository.save(admission);
     }
