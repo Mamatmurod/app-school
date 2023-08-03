@@ -12,8 +12,9 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class AdmissionServiceImpl implements AdmissionService{
+public class AdmissionServiceImpl implements AdmissionService {
     private final AdmissionRepository admissionRepository;
+
     @Override
     public ApiResult<?> getAdmissionList() {
         return ApiResult.successResponse(admissionRepository.findAll());
@@ -22,14 +23,15 @@ public class AdmissionServiceImpl implements AdmissionService{
     @Override
     public ApiResult<?> addAdmission(AdmissionDTO admissionDTO) {
         if (admissionRepository.findByGroupLevelEnum(admissionDTO.getGroupLevel()))
-        {
-            return ApiResult.errorResponse("Group Already Exist",409);
-        }
-        Admission admission = new Admission();
-        admission.setBranchId(CommonUtils.getCurrentUser().getActiveCompany());
-        admissionRepository.save(admission);
-        return ApiResult.successResponse("Admission Added Successfully");
+            return ApiResult.errorResponse("Group Already Exist", 409);
 
+        Admission admission = new Admission();
+
+        admission.setBranchId(CommonUtils.getCurrentUser().getActiveCompany());
+
+        admissionRepository.save(admission);
+
+        return ApiResult.successResponse("Admission Added Successfully");
     }
 
     @Override

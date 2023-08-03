@@ -1,9 +1,13 @@
 package ai.ecma.school.controller;
 
 import ai.ecma.school.net.ApiResult;
+import ai.ecma.school.payload.AddStudentDTO;
+import ai.ecma.school.payload.StudentDTO;
 import ai.ecma.school.utils.AppConstant;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
@@ -25,12 +29,15 @@ public interface StudentController {
     ApiResult<?> getStudents();
 
     @GetMapping(STUDENT_ADD)
-    ApiResult<?> addStudent();
+    ApiResult<?> addStudent(@RequestBody AddStudentDTO addStudentDTO);
 
     @GetMapping(STUDENT_EDIT)
-    ApiResult<?> editStudent();
+    ApiResult<?> editStudent(@RequestBody StudentDTO studentDTO);
 
     @GetMapping(STUDENT_DELETE)
-    ApiResult<?> deleteStudent(UUID id);
+    ApiResult<?> deleteStudent(@RequestParam UUID id);
+
+    @GetMapping(STUDENT_DELETE)
+    ApiResult<?> deleteStudents();
 
 }
