@@ -7,6 +7,8 @@ import ai.ecma.school.payload.response.GroupResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface GroupMapper {
     @Mapping(target = "admission", source = "admission")
@@ -20,4 +22,6 @@ public interface GroupMapper {
     @Mapping(target = "lessonStartTime", expression = "java(group.getLessonStartTime().getTime())")
     @Mapping(target = "lessonEndTime", expression = "java(group.getLessonEndTime().getTime())")
     GroupResponse groupToGroupResponse(Group group);
+
+    List<GroupResponse> groupsToGroupResponses(List<Group> groups);
 }

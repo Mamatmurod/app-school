@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -44,7 +45,9 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public ApiResult<?> getGroupList() {
-        return null;
+        List<Group> groups = groupRepository.findAll();
+        List<GroupResponse> groupResponses = groupMapper.groupsToGroupResponses(groups);
+        return ApiResult.successResponse(groupResponses);
     }
 
     @Override
