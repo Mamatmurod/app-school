@@ -52,11 +52,23 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public ApiResult<?> editGroupById(UUID id, GroupUpdateRequest groupUpdateRequest) {
-        return null;
+        boolean exists = groupRepository.existsByGroupTypeAndGroupLevelAndIdNot(groupUpdateRequest.getGroupType().name(), groupUpdateRequest.getGroupLevel().name(), id);
+        boolean isGroupExists = groupRepository.existsById(id);
+        if (exists||!isGroupExists){
+            throw RestException.alreadyExists("group");
+        }
+        Admission admission = admissionRepository.findById(groupUpdateRequest.getAdmissionId()).orElseThrow(() -> RestException.notFound("admission"));
+        Group group = groupMapper.groupFromUpdateRequest(groupUpdateRequest,admission);
+        group.setId(id);
+        Group save = groupRepository.save(group);
+        GroupResponse groupResponse = groupMapper.groupToGroupResponse(group);
+        return ApiResult.successResponse(groupResponse);
+
     }
 
     @Override
     public ApiResult<?> deleteGroup(UUID id) {
-        return null;
+        groupRepository.deleteById(id);
+        return ApiResult.successResponse();
     }
 }
