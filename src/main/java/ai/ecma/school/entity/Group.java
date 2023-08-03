@@ -4,6 +4,7 @@ import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
 import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.enums.GroupStatusEnum;
 import ai.ecma.school.enums.GroupTypeEnum;
+import ai.ecma.school.enums.WeekdayEnum;
 import ai.ecma.school.utils.ColumnKey;
 import ai.ecma.school.utils.TableNameConstant;
 import jakarta.persistence.*;
@@ -11,6 +12,9 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import java.sql.Time;
+import java.util.Collection;
 
 /**
  * @author Komronbek Bozorov 02.08.2023
@@ -67,5 +71,27 @@ public class Group extends AbsUUIDUserAuditEntity {
      */
     @Column(name = ColumnKey.MAXIMUM_NUMBER_OF_STUDENTS)
     private Integer maximumNumberOfStudents;
+
+    @ElementCollection(targetClass = WeekdayEnum.class)
+    @CollectionTable(
+            name = TableNameConstant.ADMISSION_WEEK_DAYS,
+            joinColumns = {@JoinColumn(name = ColumnKey.ADMISSION_ID)},
+            uniqueConstraints = @UniqueConstraint(columnNames = {ColumnKey.ADMISSION_ID, ColumnKey.WEEKDAYS})
+    )
+    @Enumerated(EnumType.STRING)
+    @Column(name = ColumnKey.WEEKDAYS)
+    private Collection<WeekdayEnum> weekdays;
+
+    /*
+       DARSLARNING BOSHLANISH SOATI (09:00)
+     */
+    @Column(name = ColumnKey.LESSON_START_TIME, nullable = false)
+    private Time lessonStartTime;
+
+    /*
+     DARSLARNING TUGASH SOATI (13:00)
+     */
+    @Column(name = ColumnKey.LESSON_END_TIME, nullable = false)
+    private Time lessonEndTime;
 
 }
