@@ -13,4 +13,5 @@ public interface TableNameConstant {
     String GROUP_STUDENT = "group_student";
     String STUDENT_INVOICE = "student_invoice";
 
+    String LEVEL = "level";
 }
