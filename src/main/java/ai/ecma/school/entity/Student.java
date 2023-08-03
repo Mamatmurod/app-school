@@ -1,7 +1,6 @@
 package ai.ecma.school.entity;
 
 import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
-import ai.ecma.school.enums.EnglishLevelEnum;
 import ai.ecma.school.enums.GenderEnum;
 import ai.ecma.school.enums.StudentStatusEnum;
 import ai.ecma.school.payload.UserDTO;
@@ -72,8 +71,6 @@ public class Student extends AbsUUIDUserAuditEntity implements Cloneable {
     @JdbcTypeCode(SqlTypes.LONGVARCHAR)
     private Long[] interestedCourse;
 
-    @Enumerated(EnumType.STRING)
-    private EnglishLevelEnum englishLevel;
 
     @Column(name = "position_id")
     private Long positionId;

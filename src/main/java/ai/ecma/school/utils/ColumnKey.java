@@ -136,4 +136,6 @@ public interface ColumnKey {
     String PAYMENT_STATUS_ENUM = "payment_status_enum";
     String PAYMENT_STATUS_DATE = "payment_status_date";
     String LEVEL = "level";
+    String GROUP_LEVEL = "group_level";
+    String IS_DELETED = "is_delete";
 }

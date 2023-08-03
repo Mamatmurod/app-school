@@ -7,6 +7,5 @@ import lombok.Getter;
 @Getter
 public enum GroupTypeEnum {
 
-    A, B, C, D;
-
+    A, B, C, D, V, G
 }

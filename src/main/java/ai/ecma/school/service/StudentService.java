@@ -13,7 +13,6 @@ public interface StudentService {
     ApiResult<?> getStudents();
 
     ApiResult<?> createStudent(AddStudentDTO addStudentDTO);
-
     ApiResult<?> updateStudent(StudentDTO studentDTO);
 
     ApiResult<?> deleteStudents();
