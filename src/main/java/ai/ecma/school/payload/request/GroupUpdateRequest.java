@@ -7,17 +7,18 @@ import ai.ecma.school.enums.WeekdayEnum;
 
 import java.sql.Time;
 import java.util.Collection;
+import java.util.UUID;
 
 public class GroupUpdateRequest {
     private GroupTypeEnum groupType;
-    private GroupLevelEnum groupLevelEnum;
-    private Long admissionId;
+    private GroupLevelEnum groupLevel;
+    private UUID admissionId;
     private Double price;
     private Integer discountPricePercentage;
     private Long branchId;
     private GroupStatusEnum status;
     private Integer maximumNumberOfStudents;
     private Collection<WeekdayEnum> weekdays;
-    private Time lessonStartTime;
-    private Time lessonEndTime;
+    private Long lessonStartTime;
+    private Long lessonEndTime;
 }

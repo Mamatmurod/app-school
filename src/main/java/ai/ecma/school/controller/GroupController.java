@@ -6,6 +6,8 @@ import ai.ecma.school.payload.request.GroupUpdateRequest;
 import ai.ecma.school.utils.AppConstant;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequestMapping(GroupController.GROUP_CONTROLLER_PATH)
 public interface GroupController {
     String GROUP_CONTROLLER_PATH = AppConstant.BASE_PATH+"/group";
@@ -17,11 +19,11 @@ public interface GroupController {
     @PostMapping(ADD_GROUP)
     ApiResult<?> addGroup(@RequestBody GroupCreateRequest groupCreateRequest);
     @GetMapping(GET_GROUP_BY_ID)
-    ApiResult<?> getGroupById(@PathVariable long id);
+    ApiResult<?> getGroupById(@PathVariable UUID id);
     @GetMapping(GET_GROUP_LIST)
     ApiResult<?> getGroupList();
     @PutMapping(EDIT_GROUP)
-    ApiResult<?> editGroupById(@PathVariable long id, @RequestBody GroupUpdateRequest groupUpdateRequest);
+    ApiResult<?> editGroupById(@PathVariable UUID id, @RequestBody GroupUpdateRequest groupUpdateRequest);
     @DeleteMapping(DELETE_GROUP)
-    ApiResult<?> deleteGroupById(@PathVariable long id);
+    ApiResult<?> deleteGroupById(@PathVariable UUID id);
 }

@@ -39,7 +39,7 @@ public class Group extends AbsUUIDUserAuditEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = ColumnKey.GROUP_LEVEL)
-    private GroupLevelEnum groupLevelEnum;
+    private GroupLevelEnum groupLevel;
     /**
      * AGAR GURUH QABUL UCHUN OCHILAYOTGAN BO'LSA O'CHA QABUL
      */
@@ -74,9 +74,9 @@ public class Group extends AbsUUIDUserAuditEntity {
 
     @ElementCollection(targetClass = WeekdayEnum.class)
     @CollectionTable(
-            name = TableNameConstant.ADMISSION_WEEK_DAYS,
-            joinColumns = {@JoinColumn(name = ColumnKey.ADMISSION_ID)},
-            uniqueConstraints = @UniqueConstraint(columnNames = {ColumnKey.ADMISSION_ID, ColumnKey.WEEKDAYS})
+            name = TableNameConstant.GROUP_WEEK_DAYS,
+            joinColumns = {@JoinColumn(name = ColumnKey.GROUP_ID)},
+            uniqueConstraints = @UniqueConstraint(columnNames = {ColumnKey.GROUP_ID, ColumnKey.WEEKDAYS})
     )
     @Enumerated(EnumType.STRING)
     @Column(name = ColumnKey.WEEKDAYS)

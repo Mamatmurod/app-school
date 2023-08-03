@@ -7,6 +7,8 @@ import ai.ecma.school.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 public class GroupControllerImpl implements GroupController{
@@ -17,7 +19,7 @@ public class GroupControllerImpl implements GroupController{
     }
 
     @Override
-    public ApiResult<?> getGroupById(long id) {
+    public ApiResult<?> getGroupById(UUID id) {
         return groupService.getGroupById(id);
     }
 
@@ -27,12 +29,12 @@ public class GroupControllerImpl implements GroupController{
     }
 
     @Override
-    public ApiResult<?> editGroupById(long id, GroupUpdateRequest groupUpdateRequest) {
+    public ApiResult<?> editGroupById(UUID id, GroupUpdateRequest groupUpdateRequest) {
         return groupService.editGroupById(id, groupUpdateRequest);
     }
 
     @Override
-    public ApiResult<?> deleteGroupById(long id) {
+    public ApiResult<?> deleteGroupById(UUID id) {
         return groupService.deleteGroup(id);
     }
 

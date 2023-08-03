@@ -12,17 +12,19 @@ import lombok.Getter;
 
 import java.sql.Time;
 import java.util.Collection;
+import java.util.UUID;
+
 @Getter
 public class GroupCreateRequest {
     private GroupTypeEnum groupType;
-    private GroupLevelEnum groupLevelEnum;
-    private Long admissionId;
+    private GroupLevelEnum groupLevel;
+    private UUID admissionId;
     private Double price;
     private Integer discountPricePercentage;
     private Long branchId;
     private GroupStatusEnum status;
     private Integer maximumNumberOfStudents;
     private Collection<WeekdayEnum> weekdays;
-    private Time lessonStartTime;
-    private Time lessonEndTime;
+    private Long lessonStartTime;
+    private Long lessonEndTime;
 }

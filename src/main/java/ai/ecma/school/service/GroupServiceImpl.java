@@ -1,26 +1,45 @@
 package ai.ecma.school.service;
 
+import ai.ecma.school.entity.Admission;
+import ai.ecma.school.entity.Group;
+import ai.ecma.school.exception.RestException;
 import ai.ecma.school.mapper.GroupMapper;
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.request.GroupCreateRequest;
 import ai.ecma.school.payload.request.GroupUpdateRequest;
+import ai.ecma.school.payload.response.GroupResponse;
+import ai.ecma.school.repository.AdmissionRepository;
 import ai.ecma.school.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.sql.Time;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class GroupServiceImpl implements GroupService{
     private final GroupRepository groupRepository;
     private final GroupMapper groupMapper;
+    private final AdmissionRepository admissionRepository;
     @Override
     public ApiResult<?> addGroup(GroupCreateRequest groupCreateRequest) {
-        return null;
+        Boolean isGroupExist = groupRepository.existByGroupTypeAndGroupLevel(groupCreateRequest.getGroupType().name(), groupCreateRequest.getGroupLevel().name());
+        if (isGroupExist){
+            throw RestException.alreadyExists("group");
+        }
+        Admission admission = admissionRepository.findById(groupCreateRequest.getAdmissionId()).orElseThrow(() -> RestException.notFound("admission"));
+        Group group = groupMapper.groupFromCreateRequest(groupCreateRequest, admission);
+        group=groupRepository.saveAndFlush(group);
+        GroupResponse groupResponse = groupMapper.groupToGroupResponse(group);
+        return ApiResult.successResponse(groupResponse);
     }
 
     @Override
-    public ApiResult<?> getGroupById(long id) {
-        return null;
+    public ApiResult<?> getGroupById(UUID id) {
+        Group group = groupRepository.findById(id).orElseThrow(() -> RestException.notFound("group"));
+        GroupResponse groupResponse = groupMapper.groupToGroupResponse(group);
+        return ApiResult.successResponse(groupResponse);
     }
 
     @Override
@@ -29,12 +48,12 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
-    public ApiResult<?> editGroupById(long id, GroupUpdateRequest groupUpdateRequest) {
+    public ApiResult<?> editGroupById(UUID id, GroupUpdateRequest groupUpdateRequest) {
         return null;
     }
 
     @Override
-    public ApiResult<?> deleteGroup(long id) {
+    public ApiResult<?> deleteGroup(UUID id) {
         return null;
     }
 }
