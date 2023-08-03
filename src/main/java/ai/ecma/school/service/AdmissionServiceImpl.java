@@ -1,6 +1,7 @@
 package ai.ecma.school.service;
 
 import ai.ecma.school.entity.Admission;
+import ai.ecma.school.entity.Level;
 import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.exception.RestException;
 import ai.ecma.school.net.ApiResult;
@@ -32,14 +33,13 @@ public class AdmissionServiceImpl implements AdmissionService {
         admission.setBranchId(CommonUtils.getCurrentUser().getActiveCompany());
         admission.setEndDate(new Date(admissionDTO.getEndDate()));
         admission.setStartDate(new Date(admissionDTO.getStarDate()));
-        admission.setGroupLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
         admissionSave(admissionDTO, admission);
         return ApiResult.successResponse("Admission Added Successfully");
     }
 
     private double getTotalPriceToDiscountPrice(Admission admission) {
-        if (admission.getDiscountPricePercentage()==0) return admission.getTotalPrice();
-        return admission.getTotalPrice()-(admission.getTotalPrice() / 100) * admission.getDiscountPricePercentage();
+        if (admission.getDiscountPricePercentage()==0) return admission.getMainPrice();
+        return admission.getMainPrice()-(admission.getMainPrice() / 100) * admission.getDiscountPricePercentage();
     }
 
     private GroupLevelEnum getGroupLevel(String groupLevel) {
@@ -57,21 +57,23 @@ public class AdmissionServiceImpl implements AdmissionService {
 
     @Override
     public ApiResult<?> editAdmission(AdmissionDTO admissionDTO) {
-
         Admission admission = admissionRepository.findById(admissionDTO.getId())
                 .orElseThrow(() -> RestException.notFound("Admission not founded!"));
         if (admissionDTO.getEndDate() != null) admission.setEndDate(new Date(admissionDTO.getEndDate()));
         if (admissionDTO.getStarDate() != null) admission.setStartDate(new Date(admissionDTO.getStarDate()));
-        if (admissionDTO.getGroupLevel() != null) admission.setGroupLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
         admissionSave(admissionDTO, admission);
         return ApiResult.successResponse("Admission edited!");
     }
 
     private void admissionSave(AdmissionDTO admissionDTO, Admission admission) {
-        if (admissionDTO.getTotalPrice() != null) admission.setTotalPrice(admissionDTO.getTotalPrice());
+        if (admissionDTO.getTotalPrice() != null) admission.setMainPrice(admissionDTO.getTotalPrice());
         if (admissionDTO.getDiscountPricePercentage() != null) admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
-        if (admission.getTotalPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
-
+        if (admission.getMainPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
+        Level level = new Level();
+        level.setLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
+        level.setMainPrice(admission.getMainPrice());
+        level.setDiscountPrice(admission.getDiscountPrice());
+        admission.setLevel(level);
         admission.setIsDeleted(false);
         admissionRepository.save(admission);
     }

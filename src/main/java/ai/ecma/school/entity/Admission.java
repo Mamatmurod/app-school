@@ -1,7 +1,6 @@
 package ai.ecma.school.entity;
 
 import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
-import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.utils.ColumnKey;
 import ai.ecma.school.utils.TableNameConstant;
 import jakarta.persistence.*;
@@ -29,12 +28,12 @@ public class Admission extends AbsUUIDUserAuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long position;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = ColumnKey.GROUP_LEVEL)
-    private GroupLevelEnum groupLevelEnum;
+    @Column(name = ColumnKey.LEVEL)
+    @ManyToOne
+    private Level level;
 
     @Column(name = ColumnKey.TOTAL_PRICE)
-    private double totalPrice = 0.0;
+    private double mainPrice = 0.0;
 
     @Column(name = ColumnKey.DISCOUNT_PRICE)
     private double discountPrice = 0.0;
