@@ -3,14 +3,16 @@ package ai.ecma.school.controller;
 
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AdmissionDTO;
+import ai.ecma.school.utils.AppConstant;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 
-@RequestMapping(AdmissionController.BASE_URL)
+@RequestMapping(AdmissionController.ADMISSION_CONTROLLER_PATH)
 public interface AdmissionController {
-    String BASE_URL = "/api/school/admission";
+    String ADMISSION_CONTROLLER_PATH = AppConstant.BASE_PATH + "/admission";
+
     String GET_ADMISSION_LIST = "/list";
     String ADD_ADMISSION = "/add";
     String EDIT_ADMISSION = "/edit";

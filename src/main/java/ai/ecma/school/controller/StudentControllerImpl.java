@@ -1,7 +1,9 @@
 package ai.ecma.school.controller;
 
-import ai.ecma.school.service.StudentService;
 import ai.ecma.school.net.ApiResult;
+import ai.ecma.school.payload.AddStudentDTO;
+import ai.ecma.school.payload.StudentDTO;
+import ai.ecma.school.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,7 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-public class StudentControllerImpl implements StudentController{
+public class StudentControllerImpl implements StudentController {
 
     private final StudentService studentService;
 
@@ -20,22 +22,26 @@ public class StudentControllerImpl implements StudentController{
 
     @Override
     public ApiResult<?> getStudents() {
-        return null;
+        return studentService.getStudents();
     }
 
     @Override
-    public ApiResult<?> addStudent() {
-        return null;
+    public ApiResult<?> addStudent(AddStudentDTO addStudentDTO) {
+        return studentService.createStudent(addStudentDTO);
     }
 
     @Override
-    public ApiResult<?> editStudent() {
-        return null;
+    public ApiResult<?> editStudent(StudentDTO studentDTO) {
+        return studentService.updateStudent(studentDTO);
     }
 
     @Override
     public ApiResult<?> deleteStudent(UUID id) {
-        return null;
+        return studentService.deleteStudentById(id);
     }
 
+    @Override
+    public ApiResult<?> deleteStudents() {
+        return studentService.deleteStudents();
+    }
 }
