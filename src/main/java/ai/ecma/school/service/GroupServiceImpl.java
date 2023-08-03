@@ -24,7 +24,7 @@ public class GroupServiceImpl implements GroupService{
     private final AdmissionRepository admissionRepository;
     @Override
     public ApiResult<?> addGroup(GroupCreateRequest groupCreateRequest) {
-        Boolean isGroupExist = groupRepository.existByGroupTypeAndGroupLevel(groupCreateRequest.getGroupType().name(), groupCreateRequest.getGroupLevel().name());
+        Boolean isGroupExist = groupRepository.existsByGroupTypeAndGroupLevel(groupCreateRequest.getGroupType().name(), groupCreateRequest.getGroupLevel().name());
         if (isGroupExist){
             throw RestException.alreadyExists("group");
         }

@@ -28,7 +28,7 @@ public class Admission extends AbsUUIDUserAuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long position;
 
-    @Column(name = ColumnKey.LEVEL)
+    @JoinColumn(name = ColumnKey.LEVEL)
     @ManyToOne
     private Level level;
 

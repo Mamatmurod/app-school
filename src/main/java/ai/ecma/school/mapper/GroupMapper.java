@@ -12,10 +12,12 @@ public interface GroupMapper {
     @Mapping(target = "admission", source = "admission")
     @Mapping(target = "lessonStartTime", expression = "java(new java.sql.Time(request.getLessonStartTime()))")
     @Mapping(target = "lessonEndTime", expression = "java(new java.sql.Time(request.getLessonEndTime()))")
+    @Mapping(target = "discountPricePercentage", source = "request.discountPricePercentage")
+    @Mapping(target = "branchId", source = "request.branchId")
     Group groupFromCreateRequest(GroupCreateRequest request, Admission admission);
 
-    @Mapping(source = "admission.id", target = "admissionId")
-    @Mapping(source = "lessonStartTime.time", target = "lessonStartTime")
-    @Mapping(source = "lessonEndTime.time", target = "lessonEndTime")
+    @Mapping(target = "admissionId", source = "group.admission.id")
+    @Mapping(target = "lessonStartTime", expression = "java(group.getLessonStartTime().getTime())")
+    @Mapping(target = "lessonEndTime", expression = "java(group.getLessonEndTime().getTime())")
     GroupResponse groupToGroupResponse(Group group);
 }
