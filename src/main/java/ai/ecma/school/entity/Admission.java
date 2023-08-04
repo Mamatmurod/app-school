@@ -28,8 +28,8 @@ public class Admission extends AbsUUIDUserAuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long position;
 
-    @Column(name = ColumnKey.LEVEL)
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = ColumnKey.LEVEL)
     private Level level;
 
     @Column(name = ColumnKey.TOTAL_PRICE)
@@ -65,6 +65,5 @@ public class Admission extends AbsUUIDUserAuditEntity {
      */
     @Column(name = ColumnKey.IS_DELETED)
     private Boolean isDeleted = false;
-
 
 }

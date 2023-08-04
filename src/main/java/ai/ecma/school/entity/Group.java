@@ -48,6 +48,7 @@ public class Group extends AbsUUIDUserAuditEntity {
 
     @Column(name = ColumnKey.DISCOUNT_PRICE_PERCENTAGE)
     private Integer discountPricePercentage;
+
     /**
      * GURUH QAYSI FILIALGA TEGISHLI EKANLIGI
      */

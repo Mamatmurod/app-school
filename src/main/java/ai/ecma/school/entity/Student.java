@@ -72,6 +72,7 @@ public class Student extends AbsUUIDUserAuditEntity implements Cloneable {
     private Long[] interestedCourse;
 
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "position_id")
     private Long positionId;
 
