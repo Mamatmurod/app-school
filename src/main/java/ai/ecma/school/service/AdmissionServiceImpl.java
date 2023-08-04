@@ -2,7 +2,6 @@ package ai.ecma.school.service;
 
 import ai.ecma.school.entity.Admission;
 import ai.ecma.school.entity.Level;
-import ai.ecma.school.entity.Student;
 import ai.ecma.school.entity.StudentInvoice;
 import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.exception.RestException;
@@ -12,7 +11,6 @@ import ai.ecma.school.payload.CreateInvoiceDTO;
 import ai.ecma.school.repository.AdmissionRepository;
 import ai.ecma.school.repository.LevelRepository;
 import ai.ecma.school.repository.StudentInvoiceRepository;
-import ai.ecma.school.repository.StudentRepository;
 import ai.ecma.school.utils.CommonUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,8 +46,8 @@ public class AdmissionServiceImpl implements AdmissionService {
     }
 
     private double getTotalPriceToDiscountPrice(Admission admission) {
-        if (admission.getDiscountPricePercentage()==0) return admission.getTotalPrice();
-        return admission.getTotalPrice()-(admission.getTotalPrice() / 100) * admission.getDiscountPricePercentage();
+        if (admission.getDiscountPricePercentage() == 0) return admission.getTotalPrice();
+        return admission.getTotalPrice() - (admission.getTotalPrice() / 100) * admission.getDiscountPricePercentage();
     }
 
     private GroupLevelEnum getGroupLevel(String groupLevel) {
@@ -78,12 +76,11 @@ public class AdmissionServiceImpl implements AdmissionService {
 
     private void admissionSave(AdmissionDTO admissionDTO, Admission admission) {
         if (admissionDTO.getTotalPrice() != null) admission.setDiscountPrice(admissionDTO.getTotalPrice());
-        if (admissionDTO.getDiscountPricePercentage() != null) admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
-        if (admission.getDiscountPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
+        if (admissionDTO.getDiscountPricePercentage() != null)
+            admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
+        if (admission.getDiscountPrice() != 0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
         Level level = new Level();
         level.setLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
-        level.setPrice(admission.getTotalPrice());
-        level.setPrice(admission.getDiscountPrice());
         admission.setLevel(level);
         admission.setIsDeleted(false);
         admissionRepository.save(admission);
@@ -103,7 +100,7 @@ public class AdmissionServiceImpl implements AdmissionService {
         Admission admission = admissionRepository.findById(createInvoiceDTO.getAdmissionId()).orElseThrow(() -> RestException.notFound("ADMISSION"));
 
         Level level = admission.getLevel();
-        level.setPrice(createInvoiceDTO.getPrice());
+        level.setMainPrice(createInvoiceDTO.getPrice());
         levelRepository.save(level);
 
         List<StudentInvoice> studentInvoiceList = studentInvoiceRepository.findByIdList(createInvoiceDTO.getStudentIdList());
