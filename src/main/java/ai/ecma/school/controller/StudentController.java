@@ -21,6 +21,7 @@ public interface StudentController {
     String STUDENT_ADD = "/add";
     String STUDENT_EDIT = "/edit";
     String STUDENT_DELETE = "/delete";
+    String STUDENT_DELETE_All = "/delete/all";
 
     @GetMapping(STUDENT_GET_BY_ID)
     ApiResult<?> getStudentById(UUID id);
@@ -37,7 +38,7 @@ public interface StudentController {
     @GetMapping(STUDENT_DELETE)
     ApiResult<?> deleteStudent(@RequestParam UUID id);
 
-    @GetMapping(STUDENT_DELETE)
+    @GetMapping(STUDENT_DELETE_All)
     ApiResult<?> deleteStudents();
 
 }
