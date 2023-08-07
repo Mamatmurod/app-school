@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Repository
 public interface AdmissionRepository extends JpaRepository<Admission, UUID> {
-    Boolean existsAdmissionByLevel_LevelEnum(GroupLevelEnum level_levelEnum);
+    Boolean existsAdmissionByLevel_LevelEnumAndIsDeleted(GroupLevelEnum level_levelEnum, Boolean isDeleted);
 
     List<Admission> findAllByIsDeleted(boolean isDeleted);
 }

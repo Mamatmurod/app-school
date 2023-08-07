@@ -1,7 +1,6 @@
 package ai.ecma.school.entity;
 
 import ai.ecma.school.entity.template.AbsUUIDUserAuditEntity;
-import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.enums.GroupStatusEnum;
 import ai.ecma.school.enums.GroupTypeEnum;
 import ai.ecma.school.enums.WeekdayEnum;
@@ -36,22 +35,15 @@ public class Group extends AbsUUIDUserAuditEntity {
     @Enumerated(EnumType.STRING)
     private GroupTypeEnum groupType;
 
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = ColumnKey.GROUP_LEVEL)
-    private GroupLevelEnum groupLevel;
+    @ManyToOne
+    @JoinColumn(name = ColumnKey.LEVEL)
+    private Level level;
     /**
      * AGAR GURUH QABUL UCHUN OCHILAYOTGAN BO'LSA O'CHA QABUL
      */
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = ColumnKey.ADMISSION_ID)
     private Admission admission;
-
-    @Column(name = ColumnKey.PRICE)
-    private Double price;
-
-    @Column(name = ColumnKey.DISCOUNT_PRICE_PERCENTAGE)
-    private Integer discountPricePercentage;
 
     /**
      * GURUH QAYSI FILIALGA TEGISHLI EKANLIGI

@@ -7,6 +7,7 @@ import ai.ecma.school.mapper.AdmissionStudentMapper;
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AddStudentDTO;
 import ai.ecma.school.payload.AdmissionStudentDTO;
+import ai.ecma.school.payload.StudentDTO;
 import ai.ecma.school.repository.AdmissionRepository;
 import ai.ecma.school.repository.AdmissionStudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,16 @@ public class AdmissionStudentServiceImpl implements AdmissionStudentService
             return ApiResult.successResponse("Student deleted successfully!");
         }
         return ApiResult.errorResponse("Student not deleted!",409);
+    }
+
+    @Override
+    public ApiResult<?> getStudentAdmission(UUID id) {
+        return studentService.getStudentById(id);
+    }
+
+    @Override
+    public ApiResult<?> editStudentAdmission(StudentDTO studentDTO) {
+        return studentService.updateStudent(studentDTO);
     }
 
     private AdmissionStudent getAdmissionStudent(AdmissionStudentDTO admissionStudentDTO) {
