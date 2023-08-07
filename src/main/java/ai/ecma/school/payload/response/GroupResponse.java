@@ -15,10 +15,8 @@ import java.util.UUID;
 public class GroupResponse {
     private UUID id;
     private GroupTypeEnum groupType;
-    private GroupLevelEnum groupLevel;
+    private UUID levelId;
     private UUID admissionId;
-    private Double price;
-    private Integer discountPricePercentage;
     private Long branchId;
     private GroupStatusEnum status;
     private Integer maximumNumberOfStudents;

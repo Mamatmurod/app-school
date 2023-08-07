@@ -8,7 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface GroupRepository extends JpaRepository<Group, UUID> {
-    Optional<Group> findByGroupTypeAndGroupLevel(String groupType, String groupLevel);
-    boolean existsByGroupTypeAndGroupLevel(String groupType, String groupLevel);
-    boolean existsByGroupTypeAndGroupLevelAndIdNot(String groupType, String groupLevel, UUID groupId);
+    boolean existsByGroupTypeAndLevel_Id(String groupType, UUID levelId);
+    boolean existsByGroupTypeAndLevel_IdAndIdNot(String groupType, UUID levelId, UUID groupId);
 }
