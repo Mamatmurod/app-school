@@ -1,5 +1,6 @@
 package ai.ecma.school.payload.request;
 
+import ai.ecma.school.entity.Level;
 import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.enums.GroupStatusEnum;
 import ai.ecma.school.enums.GroupTypeEnum;
@@ -14,10 +15,8 @@ import java.util.UUID;
 @Setter
 public class GroupUpdateRequest {
     private GroupTypeEnum groupType;
-    private GroupLevelEnum groupLevel;
+    private UUID levelId;
     private UUID admissionId;
-    private Double price;
-    private Integer discountPricePercentage;
     private Long branchId;
     private GroupStatusEnum status;
     private Integer maximumNumberOfStudents;
