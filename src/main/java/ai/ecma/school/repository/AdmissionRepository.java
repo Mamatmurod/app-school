@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public interface AdmissionRepository extends JpaRepository<Admission, UUID> {
     Boolean existsAdmissionByLevel_LevelEnum(GroupLevelEnum level_levelEnum);
-    Boolean findByLevel_LevelEnum(String groupLevelEnum);
 
     List<Admission> findAllByIsDeleted(boolean isDeleted);
 }
