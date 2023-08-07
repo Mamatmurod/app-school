@@ -31,6 +31,7 @@ public class Admission extends AbsUUIDUserAuditEntity {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = ColumnKey.LEVEL)
     private Level level;
+    //tayyor
 
     @Column(name = ColumnKey.TOTAL_PRICE)
     private double totalPrice = 0.0;
