@@ -25,7 +25,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 
     @Override
     public ApiResult<?> addAdmission(AdmissionDTO admissionDTO) {
-        if (admissionRepository.existsAdmissionByLevel_LevelEnum(admissionDTO.getGroupLevel())) {
+        if (admissionRepository.existsAdmissionByLevel_LevelEnumAndIsDeleted(admissionDTO.getGroupLevel(),false)) {
             return ApiResult.errorResponse("Admission Already Exist", 409);
         }
         Admission admission = new Admission();

@@ -2,6 +2,7 @@ package ai.ecma.school.controller;
 
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AddStudentDTO;
+import ai.ecma.school.payload.StudentDTO;
 import ai.ecma.school.service.AdmissionStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,5 +24,15 @@ public class AdmissionStudentControllerImpl implements AdmissionStudentControlle
     @Override
     public ApiResult<?> deleteStudentAdmission(UUID id) {
         return admissionStudentService.deleteAdmissionStudent(id);
+    }
+
+    @Override
+    public ApiResult<?> getStudentAdmission(UUID id) {
+        return admissionStudentService.getStudentAdmission(id);
+    }
+
+    @Override
+    public ApiResult<?> editStudentAdmission(StudentDTO studentDTO) {
+        return admissionStudentService.editStudentAdmission(studentDTO);
     }
 }
