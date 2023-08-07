@@ -34,7 +34,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 
     @Override
     public ApiResult<?> addAdmission(AdmissionDTO admissionDTO) {
-        if (admissionRepository.findByLevel_LevelEnum(admissionDTO.getGroupLevel())) {
+        if (admissionRepository.existsAdmissionByLevel_LevelEnum(admissionDTO.getGroupLevel())) {
             return ApiResult.errorResponse("Admission Already Exist", 409);
         }
         Admission admission = new Admission();
@@ -46,21 +46,8 @@ public class AdmissionServiceImpl implements AdmissionService {
     }
 
     private double getTotalPriceToDiscountPrice(Admission admission) {
-        if (admission.getDiscountPricePercentage() == 0) return admission.getTotalPrice();
-        return admission.getTotalPrice() - (admission.getTotalPrice() / 100) * admission.getDiscountPricePercentage();
-    }
-
-    private GroupLevelEnum getGroupLevel(String groupLevel) {
-        return switch (groupLevel) {
-            case "5" -> GroupLevelEnum.V;
-            case "6" -> GroupLevelEnum.VI;
-            case "7" -> GroupLevelEnum.VII;
-            case "8" -> GroupLevelEnum.VIII;
-            case "9" -> GroupLevelEnum.IX;
-            case "10" -> GroupLevelEnum.X;
-            case "11" -> GroupLevelEnum.XI;
-            default -> throw RestException.notFound("Group Level not founded!");
-        };
+        if (admission.getDiscountPricePercentage()==0) return admission.getMainPrice();
+        return admission.getMainPrice()-(admission.getMainPrice() / 100) * admission.getDiscountPricePercentage();
     }
 
     @Override
@@ -75,12 +62,13 @@ public class AdmissionServiceImpl implements AdmissionService {
     }
 
     private void admissionSave(AdmissionDTO admissionDTO, Admission admission) {
-        if (admissionDTO.getTotalPrice() != null) admission.setDiscountPrice(admissionDTO.getTotalPrice());
-        if (admissionDTO.getDiscountPricePercentage() != null)
-            admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
-        if (admission.getDiscountPrice() != 0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
+        if (admissionDTO.getTotalPrice() != null) admission.setMainPrice(admissionDTO.getTotalPrice());
+        if (admissionDTO.getDiscountPricePercentage() != null) admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
+        if (admission.getMainPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
         Level level = new Level();
-        level.setLevelEnum(getGroupLevel(admissionDTO.getGroupLevel()));
+        level.setLevelEnum(admissionDTO.getGroupLevel());
+        level.setMainPrice(admission.getMainPrice());
+        level.setDiscountPrice(admission.getDiscountPrice());
         admission.setLevel(level);
         admission.setIsDeleted(false);
         admissionRepository.save(admission);

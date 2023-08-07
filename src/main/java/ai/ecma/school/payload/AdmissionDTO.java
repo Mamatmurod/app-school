@@ -1,5 +1,6 @@
 package ai.ecma.school.payload;
 
+import ai.ecma.school.enums.GroupLevelEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,7 @@ public class AdmissionDTO {
     private Double totalPrice;
     private Double discountPrice;
     private Byte discountPricePercentage;
-    private String groupLevel;
+    private GroupLevelEnum groupLevel;
     private Long starDate;
     private Long endDate;
 
