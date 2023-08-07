@@ -16,7 +16,6 @@ import java.util.UUID;
  * @since 17.11.2021
  */
 @EqualsAndHashCode(callSuper = true)
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -39,30 +38,10 @@ public class AdmissionStudent extends AbsUUIDUserAuditEntity {
     @JoinColumn(name = ColumnKey.ADMISSION_ID)
     private Admission admission;
 
-    @Column(name = "invoice_id")
-    private UUID invoiceId;
-
-    /**
-     * AGAR STUDENT ALLAQACHON GURUHGA QO'SHILGAN BO'LSA. O'SHA GURUH
-     */
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    private Group aGroup;
-
-    @Column(name = "number_of_paid_time_tables", nullable = true)
-    private Integer numberOfPaidTimeTables;
-
-    private Double discountPrice;
-
-    private Long amoCrmId;
-
-    private Double score;
 
 
-    public AdmissionStudent(Student student, Admission admission, UUID invoiceId, Group aGroup, Integer numberOfPaidTimeTables) {
+    public AdmissionStudent(Student student, Admission admission) {
         this.student = student;
         this.admission = admission;
-        this.invoiceId = invoiceId;
-        this.aGroup = aGroup;
-        this.numberOfPaidTimeTables = numberOfPaidTimeTables;
     }
 }
