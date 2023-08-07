@@ -2,7 +2,6 @@ package ai.ecma.school.service;
 
 import ai.ecma.school.entity.Admission;
 import ai.ecma.school.entity.Level;
-import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.exception.RestException;
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AdmissionDTO;

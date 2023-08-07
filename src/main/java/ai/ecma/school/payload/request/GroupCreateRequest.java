@@ -5,9 +5,6 @@ import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.enums.GroupStatusEnum;
 import ai.ecma.school.enums.GroupTypeEnum;
 import ai.ecma.school.enums.WeekdayEnum;
-import ai.ecma.school.utils.ColumnKey;
-import ai.ecma.school.utils.TableNameConstant;
-import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.sql.Time;
