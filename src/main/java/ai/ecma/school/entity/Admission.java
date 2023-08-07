@@ -28,13 +28,13 @@ public class Admission extends AbsUUIDUserAuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long position;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = ColumnKey.LEVEL)
+    @ManyToOne
     private Level level;
     //tayyor
 
     @Column(name = ColumnKey.TOTAL_PRICE)
-    private double totalPrice = 0.0;
+    private double mainPrice = 0.0;
 
     @Column(name = ColumnKey.DISCOUNT_PRICE)
     private double discountPrice = 0.0;
@@ -66,5 +66,6 @@ public class Admission extends AbsUUIDUserAuditEntity {
      */
     @Column(name = ColumnKey.IS_DELETED)
     private Boolean isDeleted = false;
+
 
 }

@@ -3,7 +3,6 @@ package ai.ecma.school.service;
 import ai.ecma.school.entity.Admission;
 import ai.ecma.school.entity.Level;
 import ai.ecma.school.entity.StudentInvoice;
-import ai.ecma.school.enums.GroupLevelEnum;
 import ai.ecma.school.exception.RestException;
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AdmissionDTO;
@@ -46,8 +45,8 @@ public class AdmissionServiceImpl implements AdmissionService {
     }
 
     private double getTotalPriceToDiscountPrice(Admission admission) {
-        if (admission.getDiscountPricePercentage()==0) return admission.getMainPrice();
-        return admission.getMainPrice()-(admission.getMainPrice() / 100) * admission.getDiscountPricePercentage();
+        if (admission.getDiscountPricePercentage() == 0) return admission.getMainPrice();
+        return admission.getMainPrice() - (admission.getMainPrice() / 100) * admission.getDiscountPricePercentage();
     }
 
     @Override
@@ -63,8 +62,9 @@ public class AdmissionServiceImpl implements AdmissionService {
 
     private void admissionSave(AdmissionDTO admissionDTO, Admission admission) {
         if (admissionDTO.getTotalPrice() != null) admission.setMainPrice(admissionDTO.getTotalPrice());
-        if (admissionDTO.getDiscountPricePercentage() != null) admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
-        if (admission.getMainPrice()!=0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
+        if (admissionDTO.getDiscountPricePercentage() != null)
+            admission.setDiscountPricePercentage(admissionDTO.getDiscountPricePercentage());
+        if (admission.getMainPrice() != 0.0) admission.setDiscountPrice(getTotalPriceToDiscountPrice(admission));
         Level level = new Level();
         level.setLevelEnum(admissionDTO.getGroupLevel());
         level.setMainPrice(admission.getMainPrice());
