@@ -5,8 +5,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/school
-    username: postgres
-    password: 2003
+    username: school
+    password: K0YmRs6yD4s9AmaHt2FelP
     driver-class-name: org.postgresql.Driver
     hikari:
       minimumIdle: 2
