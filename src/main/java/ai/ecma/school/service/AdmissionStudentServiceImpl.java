@@ -4,6 +4,7 @@ import ai.ecma.school.entity.Admission;
 import ai.ecma.school.entity.AdmissionStudent;
 import ai.ecma.school.exception.RestException;
 import ai.ecma.school.mapper.AdmissionStudentMapper;
+import ai.ecma.school.mapper.StudentMapper;
 import ai.ecma.school.net.ApiResult;
 import ai.ecma.school.payload.AddStudentDTO;
 import ai.ecma.school.payload.AdmissionStudentDTO;
@@ -23,6 +24,7 @@ public class AdmissionStudentServiceImpl implements AdmissionStudentService
     private final AdmissionStudentMapper admissionStudentMapper;
     private final AdmissionStudentRepository admissionStudentRepository;
     private final StudentService studentService;
+    private final StudentMapper studentMapper;
 
 
     private Admission getAdmission(UUID admissionId) {
@@ -35,7 +37,7 @@ public class AdmissionStudentServiceImpl implements AdmissionStudentService
             return ApiResult.errorResponse("Student already exists!",409);
         }
         studentService.createStudent(studentDTO);
-        AdmissionStudentDTO admissionStudentDTO = new AdmissionStudentDTO(getAdmission(admissionId),studentDTO);
+        AdmissionStudentDTO admissionStudentDTO = new AdmissionStudentDTO(getAdmission(admissionId),studentMapper.fromAddStudentDTO(studentDTO));
         AdmissionStudent admissionStudent = getAdmissionStudent(admissionStudentDTO);
         admissionStudentRepository.save(admissionStudent);
         return ApiResult.successResponse("Student added successfully!");

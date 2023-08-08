@@ -1,6 +1,7 @@
 package ai.ecma.school.payload;
 
 import ai.ecma.school.entity.Admission;
+import ai.ecma.school.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,5 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AdmissionStudentDTO {
     private Admission admission;
-    private AddStudentDTO student;
+    private Student student;
 }
