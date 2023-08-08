@@ -14,7 +14,7 @@ public interface  AdmissionStudentController {
 
     String ADMISSION_STUDENT_CONTROLLER = AppConstant.BASE_PATH + "/admission";
 
-    String ADD_STUDENT = "/add";
+    String ADD_STUDENT = "/add-student";
     String DELETE_STUDENT_ID = "/delete-student/{id}";
     String GET_STUDENT_ID = "/get-student/{id}";
     String EDIT_STUDENT = "/edit-student";
