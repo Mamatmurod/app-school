@@ -1,9 +1,8 @@
- .d8888b.           888                        888
-d88P  Y88b          888                        888
-Y88b.               888                        888
- "Y888b.    .d8888b 88888b.   .d88b.   .d88b.  888
-    "Y88b. d88P"    888 "88b d88""88b d88""88b 888
-      "888 888      888  888 888  888 888  888 888
-Y88b  d88P Y88b.    888  888 Y88..88P Y88..88P 888
- "Y8888P"   "Y8888P 888  888  "Y88P"   "Y88P"  888
+ .oooooo..o           oooo                            oooo
+d8P'    `Y8           `888                            `888
+Y88bo.       .ooooo.   888 .oo.    .ooooo.   .ooooo.   888
+ `"Y8888o.  d88' `"Y8  888P"Y88b  d88' `88b d88' `88b  888
+     `"Y88b 888        888   888  888   888 888   888  888
+oo     .d8P 888   .o8  888   888  888   888 888   888  888
+8""88888P'  `Y8bod8P' o888o o888o `Y8bod8P' `Y8bod8P' o888o
    Powered by Spring Boot ${spring-boot.version}
